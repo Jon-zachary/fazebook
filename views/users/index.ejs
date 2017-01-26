@@ -6,5 +6,20 @@
   </head>
   <body>
     <h1>Welcome to fazbook</h1>
+    <a href="/users/new">Create a new user</a>  <!-- link to users/new, need to define route in routes/users -->
+    <!-- this function loops through the user array we passed as a param in our get('/')  route
+      and renders a span with the value of each element followed by a delete button whose form action is 
+      black magic that I may never unserstand but somehow gets us to the delete route with a particular id in users.js with a method of post because you're posting a delete...maybe...The final  <% }); %> is like a picasso ascii face and has no business in my life -->
+    <% users.forEach(function(user) { %>
+      <div>
+        <span><%= user.firstName %></span>
+        <span><%= user.lastName %></span>
+        <span><%= user.email %></span>
+        <span><%= user.dob %></span>
+        <form action='<%= `/users/${user.id}?_method=DELETE` %>' method='POST'>
+          <button type='submit'>x</button>
+        </form>
+      </div>
+    <% }); %>
   </body>
 </html>
