@@ -45,9 +45,30 @@ router.delete('/:id', function(req,res,next){
   });
 });
 
+//creates a route for get user/id which renders the new user show page
 router.get('/:id', function(req, res, next) {
   models.User.findById(req.params.id).then(function(user) {
     res.render('users/show', { user: user });
+  });
+});
+
+//creates a route for user/id/edit and renders the user edit page
+router.get('/:id/edit', function(req, res, next) {
+  models.User.findById(req.params.id).then(function(user) {
+    res.render('users/edit', { user: user });
+  });
+});
+
+//ostensibly creates a route for a put req to user/id but it's sending my browser into forever wait.
+//I googled it and it seems like i'm trying to post an empty object but my form looks correct so i really don't know.
+router.put('/:id', function(req, res, next) {
+  models.User.update({
+    email: req.body.email,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    dob: req.body.dob
+  }, { where: { id: req.params.id } }).then(function() {
+    res.redirect('/users/' + req.params.id);
   });
 });
 

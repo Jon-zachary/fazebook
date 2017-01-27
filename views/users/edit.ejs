@@ -1,0 +1,9 @@
+<form  action="<%= `/users/${user.id}?_method=PUT` %>" method="POST" >
+    <label>Email</label> <input type='text' name='email' value='<%=user.email %>'/>
+    <label>First Name</label><input type="text" name='firstName' value='<%=user.firstName %>'/>
+    <label>Last Name</label><input type="text" name='lastName' value='<%=user.lastName %>'/>
+    <label>Date of Birth</label><input type="date" name='dob' value='<%=user.date %>'/>
+    <input type="submit" value="Update User">
+  </form>
+
+ 
